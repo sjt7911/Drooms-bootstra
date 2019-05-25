@@ -1,1 +1,54 @@
+<section class="container-fluid pt-4">
+  <div class="row">
+    <div class="col">
 
+      <!-- Begin::User Card Table -->
+      <div *ngIf="users" class="card">
+        <div class="card-header">
+          Users
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Login Name</th>
+                <th>Avatar</th>
+                <th>Github Profile Url</th>
+                <th>User Type</th>
+                <th>Site Admin</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.login }}</td>
+                  <td>
+                    <img src="{{ user.avatar_url }}" alt="User Avatar">
+                  </td>
+                  <td class="text-nowrap">
+                    <a href="{{ user.html_url }}" target="_blank">Go to User's Github Profile</a>
+                  </td>
+                  <td>
+                    <span class="badge badge-secondary">{{ user.type }}</span>
+                  </td>
+                  <td>
+                    <i [ngClass]="user.site_admin === false ? 'fas fa-ban text-danger' : 'fas fa-user-shield'"></i>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary"><i class="far fa-eye"></i> Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- End::User Card Table -->
+
+    </div>
+  </div>
+</section>

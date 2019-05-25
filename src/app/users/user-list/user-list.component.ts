@@ -5,7 +5,13 @@ import { UserModel as User } from '../shared/user.model';
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: 'user-list.component.html'
+  templateUrl: 'user-list.component.html',
+  styles: [`
+    img {
+      width: 50px;
+      height: auto;
+    }
+  `]
 })
 
 export class UserListComponent implements OnInit {
