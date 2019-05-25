@@ -5,12 +5,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
+// Shared Module
+import { SharedModule } from './shared/shared.module';
 // Core Module
 import { CoreModule } from './core/core.module';
 // Users
 import { UserModule } from './users/user.module';
 // Components
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    SharedModule,
     CoreModule,
     UserModule
   ],

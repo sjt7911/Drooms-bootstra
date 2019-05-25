@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    // Loader - spinner
+    NgxUiLoaderModule,
+    NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    // Loader - spinner
+    NgxUiLoaderModule,
+    NgxUiLoaderRouterModule
   ]
 })
 
