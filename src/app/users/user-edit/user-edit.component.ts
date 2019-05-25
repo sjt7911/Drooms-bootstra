@@ -35,6 +35,7 @@ export class UserEditComponent implements OnInit {
           this.user = Object.assign(this.user, response);
         },
         (error) => {
+          console.log(error);
         },
         () => {
         }

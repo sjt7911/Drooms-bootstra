@@ -18,7 +18,7 @@
           User Information
         </div>
         <div class="card-body">
-          <ul class="list-group text-dark">
+          <ul class="list-group text-dark mb-4">
             <li class="list-group-item d-flex justify-content-between">
               <span>User ID:</span>
               {{ user.id }}
@@ -34,6 +34,15 @@
             <li class="list-group-item d-flex justify-content-between">
               <span>Is User Admin:</span>
               <i [ngClass]="user.site_admin === false ? 'fas fa-ban text-danger' : 'fas fa-user-shield'"></i>
+            </li>
+          </ul>
+
+          <ul class="list-group text-dark">
+            <li class="list-group-item list-group-item-info">
+              User Repositories
+            </li>
+            <li class="list-group-item">
+
             </li>
           </ul>
         </div>

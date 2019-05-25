@@ -35,9 +35,9 @@ export class UserListComponent implements OnInit {
           this.users = Object.assign(this.users, response.body);
         },
         (error) => {
+          console.log(error);
         },
         () => {
-          console.log(this.users);
         }
     );
   }
