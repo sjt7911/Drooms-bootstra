@@ -42,8 +42,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         (error) => {
           console.log(error);
         },
-        () => {
-        }
+        () => {}
       )
     );
   }

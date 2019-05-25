@@ -14,6 +14,8 @@ import { UserService } from '../shared/user.service';
 export class UserEditComponent implements OnInit, OnDestroy {
   userId: string;
   user: User = new User();
+  userRepos: Array<any> = new Array<any>();
+  checkForRepo: boolean;
   numberObsSubscriptions: Subscription = new Subscription();
 
   constructor(private router: Router,
@@ -26,6 +28,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
     if (this.userId) {
       this.getUserById(this.userId);
     }
+
+    this.checkForRepo = false;
   }
 
   /**
@@ -38,6 +42,27 @@ export class UserEditComponent implements OnInit, OnDestroy {
         .subscribe(
           (response) => {
             this.user = Object.assign(this.user, response);
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+          }
+        )
+    );
+  }
+
+  /**
+   * Get User repositories
+   */
+  getRepositories(): void {
+    this.checkForRepo = true;
+
+    this.numberObsSubscriptions.add(
+      this.userService.getUserRepo(this.user.login)
+        .subscribe(
+          (response) => {
+            this.userRepos = Object.assign(this.userRepos, response);
           },
           (error) => {
             console.log(error);
