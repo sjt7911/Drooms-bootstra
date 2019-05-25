@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 // User Model
 import { UserModel as User } from '../shared/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -17,13 +18,17 @@ import { UserModel as User } from '../shared/user.model';
 export class UserListComponent implements OnInit {
   users: Array<User> = new Array<User>();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.getUserList();
   }
 
+  /**
+   * Get All Users
+   */
   getUserList(): void {
     this.userService.get().subscribe(
         (response) => {
@@ -35,5 +40,13 @@ export class UserListComponent implements OnInit {
           console.log(this.users);
         }
     );
+  }
+
+  /**
+   * Edit User by Id
+   * @param id
+   */
+  editUser(id: number): void {
+    this.router.navigate([`/user/${id}/edit`]);
   }
 }
