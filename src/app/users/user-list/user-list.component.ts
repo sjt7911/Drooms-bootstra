@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 // User Model
 import { UserModel as User } from '../shared/user.model';
-import { Router } from '@angular/router';
+// User service
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -15,8 +17,9 @@ import { Router } from '@angular/router';
   `]
 })
 
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   users: Array<User> = new Array<User>();
+  numberObsSubscriptions: Subscription = new Subscription();
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -30,7 +33,9 @@ export class UserListComponent implements OnInit {
    * Get All Users
    */
   getUserList(): void {
-    this.userService.get().subscribe(
+    this.numberObsSubscriptions.add(
+      this.userService.get()
+        .subscribe(
         (response) => {
           this.users = Object.assign(this.users, response.body);
         },
@@ -39,6 +44,7 @@ export class UserListComponent implements OnInit {
         },
         () => {
         }
+      )
     );
   }
 
@@ -48,5 +54,9 @@ export class UserListComponent implements OnInit {
    */
   editUser(id: number): void {
     this.router.navigate([`/user/${id}/edit`]);
+  }
+
+  ngOnDestroy(): void {
+    this.numberObsSubscriptions.unsubscribe();
   }
 }

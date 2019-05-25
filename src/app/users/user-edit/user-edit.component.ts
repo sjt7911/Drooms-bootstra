@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import { UserService } from '../shared/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+// User Model
 import { UserModel as User } from '../shared/user.model';
+// User Service
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: 'user-edit.component.html'
 })
 
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, OnDestroy {
   userId: string;
   user: User = new User();
+  numberObsSubscriptions: Subscription = new Subscription();
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -29,17 +33,19 @@ export class UserEditComponent implements OnInit {
    * @param userId
    */
   getUserById(userId: string) {
-    this.userService.getById(userId)
-      .subscribe(
-        (response) => {
-          this.user = Object.assign(this.user, response);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-        }
-      );
+    this.numberObsSubscriptions.add(
+      this.userService.getById(userId)
+        .subscribe(
+          (response) => {
+            this.user = Object.assign(this.user, response);
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+          }
+        )
+    );
   }
 
   /**
@@ -47,5 +53,9 @@ export class UserEditComponent implements OnInit {
    */
   backToHome(): void {
     this.router.navigate(['/']);
+  }
+
+  ngOnDestroy(): void {
+    this.numberObsSubscriptions.unsubscribe();
   }
 }
