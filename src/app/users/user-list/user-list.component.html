@@ -32,6 +32,7 @@
                   <td>{{ user.id }}</td>
                   <td>{{ user.login }}</td>
                   <td>
+                    <img *ngIf="!user.avatar_url" src="https://via.placeholder.com/50" alt="User Avatar">
                     <img src="{{ user.avatar_url }}" alt="User Avatar">
                   </td>
                   <td class="text-nowrap">
