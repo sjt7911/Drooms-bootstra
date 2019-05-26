@@ -1,4 +1,4 @@
-<section class="container-fluid pt-4">
+<section class="container-fluid pt-4 mb-4">
   <div class="row">
     <div class="col">
 
@@ -28,11 +28,10 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                   <td>{{ user.id }}</td>
                   <td>{{ user.login }}</td>
                   <td>
-                    <img *ngIf="!user.avatar_url" src="https://via.placeholder.com/50" alt="User Avatar">
                     <img src="{{ user.avatar_url }}" alt="User Avatar">
                   </td>
                   <td class="text-nowrap">
@@ -56,6 +55,10 @@
               </tbody>
             </table>
           </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center">
+          <ngb-pagination [collectionSize]="users.length" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
         </div>
       </div>
       <!-- End::User Card Table -->

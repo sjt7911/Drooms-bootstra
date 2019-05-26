@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+// Loader | Spinner
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+// Bootstrap
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -16,6 +19,9 @@ import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
         deps: [HttpClient]
       }
     }),
+    // Bootstrap
+    NgbModule,
+    NgbPaginationModule,
     // Loader - spinner
     NgxUiLoaderModule,
     NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
@@ -23,6 +29,9 @@ import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
   exports: [
     CommonModule,
     TranslateModule,
+    // Bootstrap
+    NgbModule,
+    NgbPaginationModule,
     // Loader - spinner
     NgxUiLoaderModule,
     NgxUiLoaderRouterModule

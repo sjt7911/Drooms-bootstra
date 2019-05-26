@@ -20,6 +20,9 @@ import { UserService } from '../shared/user.service';
 export class UserListComponent implements OnInit, OnDestroy {
   users: Array<User> = new Array<User>();
   numberObsSubscriptions: Subscription = new Subscription();
+  // Pagination
+  page: number;
+  pageSize: number;
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -27,6 +30,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserList();
+
+    this.pageSize = 10;
+    this.page = 1;
   }
 
   /**
