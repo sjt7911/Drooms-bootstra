@@ -1,0 +1,33 @@
+{
+  "LANG": "En",
+  "MENU": {
+    "LANG": "Language",
+    "LANG_EN": "En"
+  },
+  "BUTTON": {
+    "EDIT": "Edit",
+    "BACK": "Back"
+  },
+  "GENERAL": {
+    "USERS": "Users",
+    "USER_ID": "User ID",
+    "USER_GITHUB_PROFILE_URL": "User Github Profile Url",
+    "USER_PROFILE": "User Profile",
+    "USER_INFORMATION": "User Information",
+    "USER_TYPE": "User Type",
+    "IS_USER_ADMIN": "Is User Admin",
+    "CHECK_FOR_USER_GITHUB_REPO": "Check for User Github Repositories",
+    "REPO_URL": "Repository Url",
+    "ID": "Id",
+    "LOGIN_NAME": "Login Name",
+    "AVATAR": "Avatar",
+    "GITHUB_PROFILE_URL": "Github Profile Url",
+    "GO_TO_USER_GITHUB_PROFILE": "Go to User's Github Profile",
+    "SITE_ADMIN": "Site Admin",
+    "ACTION": "Action"
+  },
+  "ALERT": {
+    "NOT_USERS": "There aren't any users!",
+    "SOMETHING_WENT_WRONG": "Something went wrong!"
+  }
+}

@@ -3,26 +3,27 @@
     <div class="col">
 
       <div *ngIf="!users" class="alert alert-info">
-        There aren't any users!
+        <i class="fas fa-exclamation-triangle"></i>
+        {{ "ALERT.NOT_USERS" | translate }}
       </div>
 
       <!-- Begin::User Card Table -->
       <div *ngIf="users" class="card">
         <div class="card-header">
-          Users
+          {{ "GENERAL.USERS" | translate}}
         </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Id</th>
-                <th>Login Name</th>
-                <th>Avatar</th>
-                <th>Github Profile Url</th>
-                <th>User Type</th>
-                <th>Site Admin</th>
-                <th>Action</th>
+                <th>{{ "GENERAL.ID" | translate }}</th>
+                <th>{{ "GENERAL.LOGIN_NAME" | translate }}</th>
+                <th>{{ "GENERAL.AVATAR" | translate }}</th>
+                <th>{{ "GENERAL.GITHUB_PROFILE_URL" | translate }}</th>
+                <th>{{ "GENERAL.USER_TYPE" | translate }}</th>
+                <th>{{ "GENERAL.SITE_ADMIN" | translate }}</th>
+                <th>{{ "GENERAL.ACTION" | translate }}</th>
               </tr>
               </thead>
 
@@ -34,7 +35,9 @@
                     <img src="{{ user.avatar_url }}" alt="User Avatar">
                   </td>
                   <td class="text-nowrap">
-                    <a href="{{ user.html_url }}" target="_blank">Go to User's Github Profile</a>
+                    <a href="{{ user.html_url }}" target="_blank">
+                      {{ "GENERAL.GO_TO_USER_GITHUB_PROFILE" | translate }}
+                    </a>
                   </td>
                   <td>
                     <span class="badge badge-secondary">{{ user.type }}</span>
@@ -45,7 +48,7 @@
                   <td>
                     <button class="btn btn-primary text-nowrap"
                             (click)="editUser(user.id)">
-                      <i class="far fa-eye"></i> Edit
+                      <i class="far fa-eye"></i> {{ "BUTTON.EDIT" | translate }}
                     </button>
                   </td>
                 </tr>

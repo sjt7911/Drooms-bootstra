@@ -1,7 +1,7 @@
 <div class="container mb-4">
   <div *ngIf="!user" class="alert alert-danger mt-4">
     <i class="fas fa-exclamation-triangle"></i>
-    Something went wrong!!!
+    {{ "ALERT.SOMETHING_WENT_WRONG" | translate }}
   </div>
 
   <div *ngIf="user" class="row">
@@ -9,7 +9,7 @@
     <aside class="col-lg-4 pt-4">
       <div class="cardcard text-white bg-info">
         <div class="card-header">
-          User Profile
+          {{ "GENERAL.USER_PROFILE" | translate }}
         </div>
         <div class="card-body">
           <img class="w-100 mb-2" src="{{ user.avatar_url }}" alt="User Avatar">
@@ -23,24 +23,26 @@
     <section class="col-lg-8 pt-4">
       <div class="card card text-white bg-secondary">
         <div class="card-header">
-          User Information
+          {{ "GENERAL.USER_INFORMATION" | translate }}
         </div>
         <div class="card-body">
           <ul class="list-group text-dark mb-4">
             <li class="list-group-item d-flex justify-content-between">
-              <span>User ID:</span>
+              <span>{{ "GENERAL.USER_ID" | translate }}:</span>
               {{ user.id }}
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>User Github Profile Url:</span>
-              <a href="{{ user.html_url }}" target="_blank">Go to User's Github Profile</a>
+              <span>{{ "GENERAL.USER_GITHUB_PROFILE_URL" | translate }}:</span>
+              <a href="{{ user.html_url }}" target="_blank">
+                {{ "GENERAL.GO_TO_USER_GITHUB_PROFILE" | translate }}
+              </a>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>User Type:</span>
+              <span>{{ "GENERAL.USER_TYPE" | translate }}:</span>
               {{ user.type }}
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>Is User Admin:</span>
+              <span>{{ "GENERAL.IS_USER_ADMIN" | translate }}:</span>
               <i [ngClass]="user.site_admin === false ? 'fas fa-ban text-danger' : 'fas fa-user-shield'"></i>
             </li>
           </ul>
@@ -48,20 +50,20 @@
           <button [ngClass]="checkForRepo ? 'btn btn-primary w-100 mb-4' : 'btn btn-primary w-100 mb-0'"
                   (click)="getRepositories()"
                   [disabled]="!user.repos_url">
-            Check for User Github Repositories
+            {{ "GENERAL.CHECK_FOR_USER_GITHUB_REPO" | translate }}
           </button>
 
           <ul *ngIf="checkForRepo" class="list-group text-dark">
             <li class="list-group-item d-lg-flex justify-content-lg-between"
                 *ngFor="let repo of userRepos">
               <div>{{ repo.full_name }}</div>
-              <a href="{{ repo.html_url }}" target="_blank">Repository Url</a>
+              <a href="{{ repo.html_url }}" target="_blank">{{ "GENERAL.REPO_URL" | translate }}</a>
             </li>
           </ul>
         </div>
         <div class="card-footer">
           <button class="btn btn-light w-100" (click)="backToHome()">
-            <i class="fas fa-arrow-alt-circle-left"></i> Back
+            <i class="fas fa-arrow-alt-circle-left"></i> {{ "BUTTON.BACK" | translate }}
           </button>
         </div>
       </div>
