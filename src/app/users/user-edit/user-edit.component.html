@@ -12,6 +12,7 @@
           {{ "GENERAL.USER_PROFILE" | translate }}
         </div>
         <div class="card-body">
+          <img *ngIf="!user.avatar_url" class="w-100 mb-2" src="https://via.placeholder.com/150" alt="User Avatar">
           <img class="w-100 mb-2" src="{{ user.avatar_url }}" alt="User Avatar">
           <p class="text-center mb-0 font-weight-bold">{{ user.login }}</p>
         </div>
@@ -32,18 +33,22 @@
               {{ user.id }}
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>{{ "GENERAL.USER_GITHUB_PROFILE_URL" | translate }}:</span>
-              <a href="{{ user.html_url }}" target="_blank">
-                {{ "GENERAL.GO_TO_USER_GITHUB_PROFILE" | translate }}
-              </a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
               <span>{{ "GENERAL.USER_TYPE" | translate }}:</span>
               {{ user.type }}
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>{{ "GENERAL.IS_USER_ADMIN" | translate }}:</span>
               <i [ngClass]="user.site_admin === false ? 'fas fa-ban text-danger' : 'fas fa-user-shield'"></i>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ "GENERAL.USER_GITHUB_PROFILE_URL" | translate }}:</span>
+              <a href="{{ user.html_url }}" target="_blank">
+                {{ "GENERAL.GO_TO_USER_GITHUB_PROFILE" | translate }}
+              </a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ "GENERAL.USER_FOLLOWERS" | translate }}:</span>
+              {{ this.userFollowers.length }}
             </li>
           </ul>
 

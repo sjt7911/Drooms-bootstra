@@ -15,6 +15,7 @@
     "USER_PROFILE": "User Profile",
     "USER_INFORMATION": "User Information",
     "USER_TYPE": "User Type",
+    "USER_FOLLOWERS": "User Followers",
     "IS_USER_ADMIN": "Is User Admin",
     "CHECK_FOR_USER_GITHUB_REPO": "Check for User Github Repositories",
     "REPO_URL": "Repository Url",

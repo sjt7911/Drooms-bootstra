@@ -26,8 +26,12 @@ export class UserService {
     return this.http.get(this.baseUrl() + '/users/' + name + '/repos');
   }
 
+  getUserFollowers() {
+    return this.http.get(this.baseUrl() + '/users/' + this.getSubject() + '/followers');
+  }
+
   /**
-   * In case want to share user data between components
+   * In case we want to share user data between components
    * @param user
    */
   setSubject(user: any) {
@@ -35,7 +39,7 @@ export class UserService {
   }
 
   /**
-   * In case want to share user data between components
+   * In case we want to share user data between components
    */
   getSubject() {
     return this.subject;

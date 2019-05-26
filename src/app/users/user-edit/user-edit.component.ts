@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, zip } from 'rxjs';
+
 // User Model
 import { UserModel as User } from '../shared/user.model';
 // User Service
@@ -14,6 +15,7 @@ import { UserService } from '../shared/user.service';
 export class UserEditComponent implements OnInit, OnDestroy {
   userId: string;
   user: User = new User();
+  userFollowers: Array<any> = new Array<any>();
   userRepos: Array<any> = new Array<any>();
   checkForRepo: boolean;
   numberObsSubscriptions: Subscription = new Subscription();
@@ -38,17 +40,20 @@ export class UserEditComponent implements OnInit, OnDestroy {
    */
   getUserById(userId: string) {
     this.numberObsSubscriptions.add(
-      this.userService.getById(userId)
-        .subscribe(
-          (response) => {
-            this.user = Object.assign(this.user, response);
-          },
-          (error) => {
-            console.log(error);
-          },
-          () => {
-          }
-        )
+      zip(
+        this.userService.getById(userId),
+        this.userService.getUserFollowers()
+      ).subscribe(
+        ([responseUser, responseFollowers]) => {
+          this.user = Object.assign(this.user, responseUser);
+          this.userFollowers = Object.assign(this.userFollowers, responseFollowers);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+        }
+      )
     );
   }
 
